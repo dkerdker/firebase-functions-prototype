@@ -1,6 +1,5 @@
 .DS_Store
 node_modules
-firebase-confidential
 /dist
 
 # local env files
