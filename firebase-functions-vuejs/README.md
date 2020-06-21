@@ -1,4 +1,6 @@
 # firebase-functions-vuejs
+Hosted on Heroku:
+https://firebase-function-prototype.herokuapp.com/
 
 ## Project setup
 ```
