@@ -1,6 +1,6 @@
 <template>
   <div class="auth open">
-    <div ref="login" class="modal active">
+    <div v-if="loggingIn" :class="['modal', {active : loggingIn}]">
       <h2>Login</h2>
       <form ref="loginForm" class="login">
         <input type="text" name="email" placeholder="Email" v-model="email" />
@@ -13,9 +13,9 @@
         <a class="switch" @click="switchBox">Register instead</a>
       </div>
     </div>
-    <div ref="register" class="modal">
+    <div v-else :class="['modal', {active : !loggingIn}]">
       <h2>Register</h2>
-      <form ref="regForm" class="register">
+      <form class="register">
         <input type="text" name="email" placeholder="Email" v-model="email" />
         <input type="password" name="password" placeholder="Password" v-model="password" />
         <button @click.prevent="registerUser">Register</button>
@@ -39,15 +39,13 @@ export default {
     return {
       email: null,
       password: null,
-      error: null
+      error: null,
+      loggingIn: true,
     };
   },
   methods: {
     switchBox() {
-      const authModelLogin = this.$refs.login;
-      const authModelRegister = this.$refs.register;
-      authModelLogin.classList.toggle("active");
-      authModelRegister.classList.toggle("active");
+      this.loggingIn = !this.loggingIn;
     },
     loginUser() {
       const loginForm = this.$refs.loginForm;
